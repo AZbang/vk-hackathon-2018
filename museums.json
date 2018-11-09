@@ -1,0 +1,23 @@
+{
+  "0": {
+  	"name": "Эрмитаж - Главный Штаб",
+  	"image": "0.jpg",
+  	"locked": false,
+  	"rooms": [0, 1]
+  },
+  "1": {
+  	"name": "Эрмитаж - Зимний дворец",
+  	"image": "1.jpg",
+  	"locked": true
+  },
+  "2": {
+  	"name": "Русский Музей",
+  	"image": "2.jpg",
+  	"locked": true
+  },
+  "3": {
+  	"name": "Третьяковская галлерея",
+  	"image": "3.jpg",
+  	"locked": true
+  }
+}
