@@ -1,25 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 
-import {ConfigProvider, Root, View} from '@vkontakte/vkui';
+import {Root, View} from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import * as data from '../store/actions';
 
 import MuseumsPanel from './MuseumsPanel';
 import MuseumPanel from './MuseumPanel';
-import RoomPanel from './RoomPanel';
+import RoomsPanel from './RoomsPanel';
 import PlaygroundPanel from './PlaygroundPanel';
-import StoryPanel from './StoryPanel';
-import AchievesPanel from './achievesPanel';
+import AchievesPanel from './AchievesPanel';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
+    this.props.dispatch(push('/museums'));
     this.props.dispatch(data.getMuseums());
     this.props.dispatch(data.getRooms());
-    this.props.dispatch(data.getFloors());
+    this.props.dispatch(data.getItems());
   }
 
   routes = {
@@ -27,7 +28,6 @@ class App extends Component {
     museum: 'museumPanel',
     rooms: 'roomsPanel',
     playground: 'playgroundPanel',
-    story: 'storyPanel',
     achieves: 'achievesPanel',
     default: 'museumsPanel'
   }
@@ -41,9 +41,8 @@ class App extends Component {
         <View id="mainView" activePanel={this.getActivePanel()}>
           <MuseumsPanel id="museumsPanel"/>
           <MuseumPanel id="museumPanel"/>
-          <RoomPanel id="roomsPanel"/>
+          <RoomsPanel id="roomsPanel"/>
           <PlaygroundPanel id="playgroundPanel"/>
-          <StoryPanel id="storyPanel"/>
           <AchievesPanel id="achievesPanel"/>
         </View>
       </Root>

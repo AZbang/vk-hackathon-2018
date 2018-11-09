@@ -1,0 +1,21 @@
+.room-info__track {
+  z-index: 10000;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.room-info__items {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.room-info__track, .room-info__items  {
+  font-family: Roboto;
+  color: #fff;
+  background: rgb(39, 43, 54);
+  border-radius: 5px;
+  padding: 5px 10px;
+  z-index: 10000;
+}

@@ -1,11 +1,25 @@
 import React from 'react';
-import {Div, Button} from '@vkontakte/vkui';
-import Icon24Camera from '@vkontakte/icons/dist/24/camera';
 import './Camera.css';
 
 class Camera extends React.Component {
   cameraStream = null;
   snapShotCanvas = document.createElement('canvas');
+  aspectRatio = null;
+  VIDEO_PIXELS = 224;
+
+
+  setupVideoDimensions(width, height) {
+    let video = document.getElementById('stream-camera');
+    this.aspectRatio = width / height;
+
+    if(width >= height) {
+      video.height = this.VIDEO_PIXELS;
+      video.width = this.aspectRatio * this.VIDEO_PIXELS;
+    } else {
+      video.width = this.VIDEO_PIXELS;
+      video.height = this.VIDEO_PIXELS / this.aspectRatio;
+    }
+  }
 
   takeSnapshot = () => {
     let video = document.getElementById('stream-camera');
@@ -39,9 +53,8 @@ class Camera extends React.Component {
   }
 
   render = () => (
-    <div>
+    <div onClick={() => this.props.onClick()} style={{position: 'absolute', top: 0}}>
       <video autoPlay id="stream-camera"></video>
-      <Button onClick={this.takeSnapshot} className="camera-snapshot" before={<Icon24Camera/>} size="l">Take a photo</Button>
     </div>
   )
 }
