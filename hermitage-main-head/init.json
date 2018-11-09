@@ -1,5 +1,10 @@
 {
 	"name": "Эрмитаж - Главный Штаб",
 	"image": "image.jpg",
-	"locked": false
+	"locked": false,
+
+	"floors": [
+		"floor-3",
+		"floor-4"
+	]
 }
