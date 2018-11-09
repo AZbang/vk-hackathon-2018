@@ -1,16 +1,251 @@
 {
   "0": {
     "image": "0.png",
+    "name": "Смерть Катона Утического",
+    "rebus": "🧔⚰",
     "story": [
       "Lorem impsum",
       "Sanya hui sosi"
     ]
   },
+
   "1": {
     "image": "1.png",
+    "name": "Невинность, предпочитающая Любовь Богутству",
+    "rebus": "🌲👼👫 💰👩‍🚒🌲",
     "story": [
       "Lorem impsum",
       "Sanya hui sosi"
     ]
-  }
+  },
+
+  "2": {
+    "image": "2.png",
+    "name": "Генрих IV со свитой на охоте",
+    "rebus": "🌲🏇🎠🎠🏇 🎠🎠🌳",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "3": {
+    "image": "3.png",
+    "name": "Наполеон на охоте в Компьенском лесу",
+    "rebus": "🌲🏇🎠🎠🏇 🔫🎠🎠🌳",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "4": {
+    "image": "4.png",
+    "name": "Наполеон Бонапарт на Аркольском мосту",
+    "rebus": "🔥🏳️🗡👨🔥",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "5": {
+    "image": "5.png",
+    "name": "Морфей и Ирида",
+    "rebus": "💆‍♂️💤👼☁️👩",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "6": {
+    "image": "6.png",
+    "name": "Возвращение Андромеды",
+    "rebus": "👴♦️👨 🖕👨👩‍❤️‍💋‍👩 👩",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "7": {
+    "image": "7.png",
+    "name": "Брак Персея и Андромеды",
+    "rebus": "👱‍♀️👨👩  ♦️🙍‍♂️🙍🏻▫️  👨",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "8": {
+    "image": "8.png",
+    "name": "Первые Шаги",
+    "rebus": "👩👩👩👩👶👶🐶👶👶👶👩",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "9": {
+    "image": "9.png",
+    "name": "Подарок",
+    "rebus": "👵💐✉️👱‍♀️🐶",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "10": {
+    "image": "10.png",
+    "name": "Женщина и Амур",
+    "rebus": "🌳🏹👼👩 🌲",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "11": {
+    "image": "11.png",
+    "name": "Чума в Барселоне",
+    "rebus": "🌡👩🛏",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "12": {
+    "image": "12.png",
+    "name": "Хижины",
+    "rebus": "🏘🏡🏘",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "13": {
+    "image": "13.png",
+    "name": "Арена в Арле",
+    "rebus": "🚶👩‍👩‍👧‍👧🎪👨‍👩‍👦‍👦",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "14": {
+    "image": "14.png",
+    "name": "Куст",
+    "rebus": "🌿",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "15": {
+    "image": "15.png",
+    "name": "Воспоминание о саде в Эттене",
+    "rebus": "☂️👫💐💐👵",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "16": {
+    "image": "16.png",
+    "name": "Портрет мадам Трабук",
+    "rebus": "💚👩",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "17": {
+    "image": "17.png",
+    "name": "Белый дом ночью.",
+    "rebus": "🌳🌳🏠🌳🌕",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "18": {
+    "image": "18.png",
+    "name": "Дом с пахарем",
+    "rebus": "🐴🚶  🌳🌲🏠🌳🌳  ",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "19": {
+    "image": "19.png",
+    "name": "Утро. Отправление на работу.",
+    "rebus": "🐴 👩 👨",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "20": {
+    "image": "20.png",
+    "name": "Человек и животные среди природы",
+    "rebus": "⛰👩 🐮🐐⛰",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "21": {
+    "image": "21.png",
+    "name": "Композиция VI",
+    "rebus": "⁉️❓❗️⁉️❓",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "21": {
+    "image": "21.png",
+    "name": "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+    "rebus": "☂️👫💐💐👵",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+  "22": {
+    "image": "21.png",
+    "name": "Танец",
+    "rebus": "💃💃💃💃💃",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
+
+    "22": {
+    "image": "21.png",
+    "name": "Танец",
+    "rebus": "💃💃💃💃💃",
+    "story": [
+      "Lorem impsum",
+      "Sanya hui sosi"
+    ]
+  },
 }
