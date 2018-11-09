@@ -1,0 +1,44 @@
+{
+  "name": "vkapp",
+  "version": "0.1.0",
+  "homepage": "https://azbang.github.io/basic_vk_app/",
+  "private": true,
+  "dependencies": {
+    "@vkontakte/icons": "^1.1.1",
+    "@vkontakte/vkui": "^2.5.8",
+    "@vkontakte/vkui-connect": "^1.0.0",
+    "cordova-android": "^7.1.1",
+    "cordova-plugin-whitelist": "^1.3.3",
+    "ecb-exchange-rates": "0.0.7",
+    "gh-pages": "^1.2.0",
+    "history": "^4.7.2",
+    "lodash": "^4.17.10",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "seamless-immutable": "^7.1.3"
+  },
+  "scripts": {
+    "start": "SET PORT=10888 && react-scripts start",
+    "build": "react-scripts build",
+    "build:cordova": "react-scripts build && rm -rf www && mv build www && cordova build android --release --buildConfig",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
+}
