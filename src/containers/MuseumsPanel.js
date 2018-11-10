@@ -2,15 +2,18 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
-import {Panel, PanelHeader, HeaderButton, Group, Footer, Spinner, List, Cell, Avatar} from '@vkontakte/vkui';
+import {Panel, PanelHeader, HeaderButton, Group, Footer, Spinner, List} from '@vkontakte/vkui';
 import Icon24FavoriteOutline from '@vkontakte/icons/dist/24/favorite_outline';
 import * as data from '../store/actions';
+
+import MuseumPreview from '../components/MuseumPreview';
 
 class MuseumsPanel extends Component {
   openMuseum = (id) => {
     this.props.dispatch(data.setMuseum(id))
     this.props.dispatch(push('/museum'));
   }
+
   openAchiements = () => {
     this.props.dispatch(push('/achieves'));
   }
@@ -18,16 +21,7 @@ class MuseumsPanel extends Component {
   getMuseumsList = () => {
     let list = [];
     for(let key in this.props.museums) {
-      let it = this.props.museums[key];
-      list.push(
-        <Cell key={key}
-            className={it.disable ? 'disable' : 'enable'}
-            onClick={() => this.openMuseum(key)}
-            before={<Avatar type="image" src={data.getMuseumImg(it.image)} />}
-            description="Sanya hui sosi">
-          {it.name}
-        </Cell>
-      );
+      list.push(<MuseumPreview onClick={() => this.openMuseum(key)} key={key} data={this.props.museums[key]}/>);
     }
     return list;
   }
@@ -39,13 +33,15 @@ class MuseumsPanel extends Component {
         <PanelHeader left={<HeaderButton onClick={this.openAchiements}>{<Icon24FavoriteOutline/>}</HeaderButton>}>
           VinGo.Музеи
         </PanelHeader>
-        {this.props.loading && (<div style={{height: 100}}><Spinner/></div>)}
-        <Group>
-          <List>
-            {museumsList}
-          </List>
-        </Group>
-        <Footer>Доступно {museumsList.length} музея</Footer>
+        {this.props.loading && (<div style={{height: 500}}><Spinner/></div>)}
+        {!this.props.loading && ([
+          <Group title="Выберите музей для прогулки:">
+            <List style={{padding: '1px'}}>
+              {museumsList}
+            </List>
+          </Group>,
+          <Footer>Доступно {museumsList.length} музея</Footer>
+        ])}
       </Panel>
     )
   }

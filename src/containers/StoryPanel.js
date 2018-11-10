@@ -32,7 +32,7 @@ class StoryPanel extends React.Component {
   render() {
     return (
       <Panel id={this.props.id}>
-        <StoryItem onClick={this.nextStory} item={this.getCurrentItem()} story={this.state.currentStory != -1 ? this.getCurrentItem().story[this.state.currentStory] : null}/>
+        <StoryItem onClick={this.nextStory} item={this.getCurrentItem()} story={this.state.currentStory !== -1 ? this.getCurrentItem().story[this.state.currentStory] : null}/>
       </Panel>
     )
   }
