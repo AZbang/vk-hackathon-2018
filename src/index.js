@@ -27,7 +27,7 @@ if(process.env.NODE_ENV !== 'production') {
     rootReducer, composeEnhancers(applyMiddleware(thunk, routerMiddleware(history), logger))
   );
 } else {
-  store = createStore(applyMiddleware(thunk, routerMiddleware(history)));
+  store = createStore(rootReducer, applyMiddleware(thunk, routerMiddleware(history)));
 }
 
 
