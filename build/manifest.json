@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "VinGo",
+  "name": "Интерактивные прогулки по музеям",
   "icons": [
     {
       "src": "favicon.ico",

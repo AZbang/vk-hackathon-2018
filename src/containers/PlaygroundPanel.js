@@ -16,8 +16,6 @@ class PlaygroundPanel extends React.Component {
   }
 
   checkItem = (img) => {
-    this.props.dispatch(push('/story'));
-
     let id = model.predict(img);
     if(this.props.gameItemsIds[this.props.currentItemId] === parseInt(id, 10)) {
       this.props.dispatch(push('/story'));
