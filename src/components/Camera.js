@@ -72,7 +72,7 @@ class Camera extends React.Component {
         navigatorAny.msGetUserMedia;
 
     if(navigator.getUserMedia) {
-      navigator.getUserMedia({video: true}, stream => {
+      navigator.getUserMedia({video: { facingMode:  "environment" }}, stream => {
         video.srcObject = stream;
         this.cameraStream = stream.getTracks()[0];
         video.width = 224;

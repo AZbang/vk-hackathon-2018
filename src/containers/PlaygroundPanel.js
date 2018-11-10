@@ -46,7 +46,7 @@ class PlaygroundPanel extends Component {
     return (
       <Panel id={this.props.id}>
         <RoomInfo room={this.props.room} itemCount={this.state.currentItemId} style={{display: this.showStoryItem() ? 'none' : 'block'}}></RoomInfo>
-        <Camera onStream={(img) => this.checkItem(img)} style={{display: this.showStoryItem() ? 'none' : 'block'}} facingMode="environment"/>
+        <Camera onStream={(img) => this.checkItem(img)} style={{display: this.showStoryItem() ? 'none' : 'block'}}/>
         <ItemRebus room={this.props.room} item={this.getCurrentItem()}></ItemRebus>
 
         <StoryItem show={this.showStoryItem()} onEnd={this.onStoryItemEnded} room={this.props.room} item={this.getCurrentItem()}></StoryItem>
