@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.azbang.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>App</name>
+    <name>VinGo</name>
+    <icon src="res/icon.png" />
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+       Интерактивные прогулки по музеям
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="azbangwtf@ya.ru">
+        Andrey Zhevlakov and Alexander Mamaev
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />

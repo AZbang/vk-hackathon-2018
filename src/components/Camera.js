@@ -6,6 +6,7 @@ class Camera extends React.Component {
   cameraStream = null;
   snapShotCanvas = document.createElement('canvas');
   aspectRatio = null;
+  tickerId = null;
 
   /**
    * Captures a frame from the webcam and normalizes it between -1 and 1.
@@ -13,6 +14,7 @@ class Camera extends React.Component {
    */
   capture() {
     const video = document.getElementById('stream-camera');
+    if(!video) return;
 
     return tf.tidy(() => {
       // Reads the image as a Tensor from the webcam <video> element.
@@ -28,7 +30,7 @@ class Camera extends React.Component {
       // Normalize the image between -1 and 1. The image comes in between 0-255,
       // so we divide by 127 and subtract 1.
       let res =  batchedImage.toFloat().div(tf.scalar(127)).sub(tf.scalar(1));
-      this.props.onSnapshot && this.props.onSnapshot(res);
+      this.props.onStream && this.props.onStream(res);
     });
   }
 
@@ -72,15 +74,19 @@ class Camera extends React.Component {
     if(navigator.getUserMedia) {
       navigator.getUserMedia({video: true}, stream => {
         video.srcObject = stream;
-        this.cameraStream = stream;
+        this.cameraStream = stream.getTracks()[0];
         video.width = 224;
         video.height = 224;
+        setTimeout(() => {
+          this.tickerId = setInterval(() => this.capture(), 500);
+        }, 1000)
       }, error => {
-          throw error;
+        throw error;
       });
     }
   }
   componentWillUnmount() {
+    this.tickerId && clearInterval(this.tickerId);
     this.cameraStream && this.cameraStream.stop();
   }
 

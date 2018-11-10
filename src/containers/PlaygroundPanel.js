@@ -17,39 +17,39 @@ class PlaygroundPanel extends Component {
   }
 
   getCurrentItem = () => {
-    return this.props.items[this.state.shuffleItems[this.state.currentItemId] || 0];
+    if(!this.state.shuffleItems.length) return {};
+    return this.props.items[this.state.shuffleItems[this.state.currentItemId]];
   }
 
   onStoryItemEnded = () => {
+    console.log('dfsd')
     if(this.state.currentItemId+1 >= this.props.room.items.length) {
       return this.props.dispatch(push('/museum'));
     }
-
     this.setState({
-      showStoryItem: false,
       currentItemId: this.state.currentItemId+1
     });
   }
 
-  onSnapshot = (img) => {
-    this.props.dispatch(data.predict(img));
+  showStoryItem() {
+    if(this.state.shuffleItems[this.state.currentItemId] == null || this.props.predictionItemId == null) return false;
+    return this.state.shuffleItems[this.state.currentItemId] == this.props.predictionItemId;
   }
 
-  checkItem = (img) => {
-    this.setState({showStoryItem: true});
 
-    // let id = mobilenet.predict(img);
-    // if(this.props.items[this.currentItemId] === id) this.showStory();
+  checkItem = (img) => {
+    if(this.showStoryItem()) return;
+    this.props.dispatch(data.predict(img));
   }
 
   render() {
     return (
       <Panel id={this.props.id}>
-        <RoomInfo room={this.props.room} itemCount={this.state.currentItemId} style={{display: this.state.showStoryItem ? 'none' : 'block'}}></RoomInfo>
-        <Camera onSnapshot={this.onSnapshot} onStream={(img) => this.checkItem(img)} onClick={() => this.checkItem()} style={{display: this.state.showStoryItem ? 'none' : 'block'}} facingMode="environment"/>
+        <RoomInfo room={this.props.room} itemCount={this.state.currentItemId} style={{display: this.showStoryItem() ? 'none' : 'block'}}></RoomInfo>
+        <Camera onStream={(img) => this.checkItem(img)} style={{display: this.showStoryItem() ? 'none' : 'block'}} facingMode="environment"/>
         <ItemRebus room={this.props.room} item={this.getCurrentItem()}></ItemRebus>
 
-        <StoryItem show={this.state.showStoryItem} onEnd={this.onStoryItemEnded} room={this.props.room} item={this.getCurrentItem()}></StoryItem>
+        <StoryItem show={this.showStoryItem()} onEnd={this.onStoryItemEnded} room={this.props.room} item={this.getCurrentItem()}></StoryItem>
       </Panel>
     )
   }
@@ -58,7 +58,8 @@ class PlaygroundPanel extends Component {
 function mapStateToProps(state) {
   return {
     room: state.data.activeRoom,
-    items: state.data.items
+    items: state.data.items,
+    predictionItemId: state.data.predictionItemId
   }
 }
 

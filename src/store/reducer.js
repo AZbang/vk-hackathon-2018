@@ -6,7 +6,7 @@ const initialState = Immutable({
 
   model: null,
   logreg: logreg,
-  prediction_item_id: null,
+  predictionItemId: null,
 
   museums: [],
   floors: [],
@@ -31,7 +31,7 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({model: action.data})
 
     case 'SET_PREDICTION_ITEM_ID':
-      return state.merge({prediction_item_id: action.data})
+      return state.merge({predictionItemId: action.id})
 
     case 'SET_MUSEUMS':
       return state.merge({museums: action.data})
