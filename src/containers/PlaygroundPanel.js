@@ -1,55 +1,35 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {Panel} from '@vkontakte/vkui';
 import {push} from 'react-router-redux';
 
-import * as data from '../store/actions';
+import * as model from '../model';
+
 import Camera from '../components/Camera';
 import RoomInfo from '../components/RoomInfo';
 import ItemRebus from '../components/ItemRebus';
-import StoryItem from '../components/StoryItem';
 
-class PlaygroundPanel extends Component {
-  state = {
-    currentItemId: 0,
-    showStoryItem: false,
-    shuffleItems: [].concat(this.props.room.items).sort(() => Math.random() - .5)
-  }
+class PlaygroundPanel extends React.Component {
 
   getCurrentItem = () => {
-    if(!this.state.shuffleItems.length) return {};
-    return this.props.items[this.state.shuffleItems[this.state.currentItemId]];
+    return this.props.items[this.props.gameItemsIds[this.props.currentItemId]];
   }
-
-  onStoryItemEnded = () => {
-    console.log('dfsd')
-    if(this.state.currentItemId+1 >= this.props.room.items.length) {
-      return this.props.dispatch(push('/museum'));
-    }
-    this.setState({
-      currentItemId: this.state.currentItemId+1
-    });
-  }
-
-  showStoryItem() {
-    if(this.state.shuffleItems[this.state.currentItemId] == null || this.props.predictionItemId == null) return false;
-    return this.state.shuffleItems[this.state.currentItemId] == this.props.predictionItemId;
-  }
-
 
   checkItem = (img) => {
-    if(this.showStoryItem()) return;
-    this.props.dispatch(data.predict(img));
+    this.props.dispatch(push('/story'));
+
+    let id = model.predict(img);
+    if(this.props.gameItemsIds[this.props.currentItemId] === parseInt(id, 10)) {
+      this.props.dispatch(push('/story'));
+    }
   }
 
   render() {
     return (
       <Panel id={this.props.id}>
-        <RoomInfo room={this.props.room} itemCount={this.state.currentItemId} style={{display: this.showStoryItem() ? 'none' : 'block'}}></RoomInfo>
-        <Camera onStream={(img) => this.checkItem(img)} style={{display: this.showStoryItem() ? 'none' : 'block'}}/>
+        <RoomInfo room={this.props.room} itemCount={this.props.currentItemId}></RoomInfo>
+        <Camera onStream={this.checkItem}/>
         <ItemRebus room={this.props.room} item={this.getCurrentItem()}></ItemRebus>
-
-        <StoryItem show={this.showStoryItem()} onEnd={this.onStoryItemEnded} room={this.props.room} item={this.getCurrentItem()}></StoryItem>
       </Panel>
     )
   }
@@ -57,9 +37,10 @@ class PlaygroundPanel extends Component {
 
 function mapStateToProps(state) {
   return {
-    room: state.data.activeRoom,
     items: state.data.items,
-    predictionItemId: state.data.predictionItemId
+    room: state.data.activeRoom,
+    gameItemsIds: state.data.gameItemsIds,
+    currentItemId: state.data.currentItemId
   }
 }
 

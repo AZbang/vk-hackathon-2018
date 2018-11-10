@@ -77,9 +77,9 @@ class Camera extends React.Component {
         this.cameraStream = stream.getTracks()[0];
         video.width = 224;
         video.height = 224;
-        setTimeout(() => {
+        video.onloadedmetadata = () => {
           this.tickerId = setInterval(() => this.capture(), 500);
-        }, 1000)
+        }
       }, error => {
         throw error;
       });
