@@ -63,6 +63,7 @@ export function predict(img) {
           maxi = i;
         }
       }
+      document.getElementById('debugger').innerHTML = max;
       dispatch({
         type: 'SET_PREDICTION_ITEM_ID',
         id: max > .5 ? maxi : -1

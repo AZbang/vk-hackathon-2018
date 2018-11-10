@@ -24,5 +24,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <plugin name="cordova-plugin-camera-preview" spec="https://github.com/cordova-plugin-camera-preview/cordova-plugin-camera-preview.git">
+        <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="25+" />
+    </plugin>
     <engine name="android" spec="^7.1.1" />
 </widget>
