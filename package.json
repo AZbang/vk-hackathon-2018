@@ -1,7 +1,7 @@
 {
   "name": "vkapp",
   "version": "0.1.0",
-  "homepage": "https://azbang.github.io/basic_vk_app/",
+  "homepage": "https://azbang.github.io/vk-hackathon-2018/",
   "private": true,
   "dependencies": {
     "@tensorflow/tfjs": "^0.13.4",
