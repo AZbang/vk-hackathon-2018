@@ -1,0 +1,17 @@
+.story-item__bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-position: center;
+  background-size: cover;
+}
+
+.story-item__name {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  color: #fff;
+  font-size: 2em;
+}

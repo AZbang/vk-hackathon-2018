@@ -1,7 +1,12 @@
 import Immutable from 'seamless-immutable';
+import logreg from '../model/logreg.json';
 
 const initialState = Immutable({
   loading: false,
+
+  model: null,
+  logreg: logreg,
+  prediction_item_id: null,
 
   museums: [],
   floors: [],
@@ -12,11 +17,21 @@ const initialState = Immutable({
   },
   activeRoom: {
     items: []
-  }
+  },
+  activeItem: {}
 });
 
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
+
+    case 'SET_LOGREG':
+      return state.merge({logreg: action.data})
+
+    case 'SET_MODEL':
+      return state.merge({model: action.data})
+
+    case 'SET_PREDICTION_ITEM_ID':
+      return state.merge({prediction_item_id: action.data})
 
     case 'SET_MUSEUMS':
       return state.merge({museums: action.data})
@@ -37,6 +52,15 @@ export default function reduce(state = initialState, action = {}) {
         activeRoom: Object.assign({}, state.rooms[action.id]),
     });
 
+    case 'SET_ITEM':
+      return state.merge({
+        activeItem: Object.assign({}, state.items[action.id]),
+    });
+
+    case 'SET_LOADING':
+      return state.merge({
+        loading: action.loading
+      })
 
     default:
       return state;

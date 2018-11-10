@@ -9,7 +9,6 @@ import * as data from '../store/actions';
 
 import MuseumsPanel from './MuseumsPanel';
 import MuseumPanel from './MuseumPanel';
-import RoomsPanel from './RoomsPanel';
 import PlaygroundPanel from './PlaygroundPanel';
 import AchievesPanel from './AchievesPanel';
 
@@ -18,6 +17,7 @@ class App extends Component {
     super(props);
 
     this.props.dispatch(push('/museums'));
+    this.props.dispatch(data.getModel());
     this.props.dispatch(data.getMuseums());
     this.props.dispatch(data.getRooms());
     this.props.dispatch(data.getItems());
@@ -41,7 +41,6 @@ class App extends Component {
         <View id="mainView" activePanel={this.getActivePanel()}>
           <MuseumsPanel id="museumsPanel"/>
           <MuseumPanel id="museumPanel"/>
-          <RoomsPanel id="roomsPanel"/>
           <PlaygroundPanel id="playgroundPanel"/>
           <AchievesPanel id="achievesPanel"/>
         </View>
@@ -52,7 +51,6 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    loading: state.data.loading
   }
 }
 

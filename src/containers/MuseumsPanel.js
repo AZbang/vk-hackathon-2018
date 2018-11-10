@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
-import {Panel, PanelHeader, HeaderButton, Group, Footer, List, Cell, Avatar} from '@vkontakte/vkui';
-import Icon28Favorite from '@vkontakte/icons/dist/28/favorite';
+import {Panel, PanelHeader, HeaderButton, Group, Footer, Spinner, List, Cell, Avatar} from '@vkontakte/vkui';
+import Icon24FavoriteOutline from '@vkontakte/icons/dist/24/favorite_outline';
 import * as data from '../store/actions';
 
 class MuseumsPanel extends Component {
@@ -36,10 +36,10 @@ class MuseumsPanel extends Component {
     let museumsList = this.getMuseumsList();
     return (
       <Panel id={this.props.id}>
-        <PanelHeader
-          right={<HeaderButton onClick={() => this.openAchiements()}><Icon28Favorite/></HeaderButton>}>
+        <PanelHeader left={<HeaderButton onClick={this.openAchiements}>{<Icon24FavoriteOutline/>}</HeaderButton>}>
           VinGo.Музеи
         </PanelHeader>
+        {this.props.loading && (<div style={{height: 100}}><Spinner/></div>)}
         <Group>
           <List>
             {museumsList}
@@ -53,6 +53,7 @@ class MuseumsPanel extends Component {
 
 function mapStateToProps(state) {
   return {
+    loading: state.data.loading,
     museums: state.data.museums
   }
 }
