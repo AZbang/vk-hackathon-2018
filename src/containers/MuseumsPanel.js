@@ -21,7 +21,7 @@ class MuseumsPanel extends Component {
   getMuseumsList = () => {
     let list = [];
     for(let key in this.props.museums) {
-      list.push(<MuseumPreview onClick={() => this.openMuseum(key)} key={key} data={this.props.museums[key]}/>);
+      list.push(<MuseumPreview onClick={() => this.openMuseum(key)} key={'museum-' + key} data={this.props.museums[key]}/>);
     }
     return list;
   }
@@ -34,14 +34,14 @@ class MuseumsPanel extends Component {
           VinGo.Музеи
         </PanelHeader>
         {this.props.loading && (<div style={{height: 500}}><Spinner/></div>)}
-        {!this.props.loading && ([
+        {!this.props.loading && (
           <Group title="Выберите музей для прогулки:">
             <List style={{paddingBottom: '5px'}}>
               {museumsList}
             </List>
-          </Group>,
-          <Footer>Доступно {museumsList.length} музея</Footer>
-        ])}
+          </Group>
+        )}
+        {!this.props.loading && (<Footer>Доступно {museumsList.length} музея</Footer>)}
       </Panel>
     )
   }

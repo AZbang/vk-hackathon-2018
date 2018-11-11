@@ -78,6 +78,11 @@ class Camera extends React.Component {
         video.width = 224;
         video.height = 224;
         video.onloadedmetadata = () => {
+          let max = Math.max(video.videoWidth, video.videoHeight);
+
+          video.style.width = video.videoWidth+video.videoHeight + 'px';
+          video.style.marginLeft = -(video.videoWidth+video.videoHeight)/2+window.innerWidth/2 + 'px';
+          video.style.height = '100vh';
           this.tickerId = setInterval(() => this.capture(), 500);
         }
       }, error => {
@@ -92,7 +97,7 @@ class Camera extends React.Component {
 
   render = () => (
     <div onClick={() => this.capture()} style={{position: 'absolute', top: 0}}>
-      <video style={{width: '100vw', height: '100vh'}} autoPlay id="stream-camera"></video>
+      <video autoPlay id="stream-camera"></video>
     </div>
   )
 }
