@@ -3,6 +3,8 @@ import Immutable from 'seamless-immutable';
 const initialState = Immutable({
   loading: false,
 
+  completeRooms: JSON.parse(localStorage.getItem('completeRooms') || "[]"),
+
   museums: [],
   floors: [],
   rooms: [],
@@ -53,6 +55,12 @@ export default function reduce(state = initialState, action = {}) {
         gameItemsIds: [].concat(state.rooms[action.id].items).sort(() => Math.random() - .5),
         currentItemId: 0
       });
+
+    case 'SET_COMPLETE_ROOM':
+      localStorage.setItem('completeRooms', JSON.stringify(state.completeRooms.concat([action.id])));
+      return state.merge({
+        completeRooms: state.completeRooms.concat([action.id])
+      })
 
     case 'NEXT_GAME_ITEM_ID':
       return state.merge({

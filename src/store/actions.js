@@ -57,7 +57,9 @@ export function setLoading(loading) {
   return {type: 'SET_LOADING', loading}
 }
 
-
+export function setCompleteRoom(id) {
+  return {type: 'SET_COMPLETE_ROOM', id}
+}
 
 export function setMuseum(id) {
   return {type: 'SET_MUSEUM', id}

@@ -12,6 +12,7 @@ class RoomPreview extends React.Component {
         <div className="room-preview__info">
           <span className="room-preview__info__track">Зал №{this.props.data.track}</span>
           <span className="room-preview__info__floor">{this.props.data.floor} Этаж</span>
+          {this.props.complete && <span className="room-preview__info__complete">Пройдено</span>}
         </div>
       </div>
     )

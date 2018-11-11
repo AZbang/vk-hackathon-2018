@@ -20,7 +20,12 @@ class StoryPanel extends React.Component {
   nextStory = () => {
     if(this.state.currentStory+1 >= this.getCurrentItem().story.length) {
       if(this.props.currentItemId+1 >= this.props.gameItemsIds.length) {
-        return this.props.dispatch(push('/museum'));
+        for(let key in this.props.rooms) {
+          if(this.props.activeRoom.label === this.props.rooms[key].label) {
+            this.props.dispatch(data.setCompleteRoom(key));
+            return this.props.dispatch(push('/museum'));
+          }
+        }
       }
       this.props.dispatch(data.nextItemId());
       this.props.dispatch(push('/playground'));
@@ -40,6 +45,8 @@ class StoryPanel extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    rooms: state.data.rooms,
+    activeRoom: state.data.activeRoom,
     items: state.data.items,
     gameItemsIds: state.data.gameItemsIds,
     currentItemId: state.data.currentItemId

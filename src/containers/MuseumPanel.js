@@ -23,7 +23,7 @@ class MuseumPanel extends React.Component {
   getRoomPreviewsList = () => {
     let list = [];
     for(let key in this.props.rooms) {
-      list.push(<RoomPreview key={key} onClick={() => this.openPlayground(key)} data={this.props.rooms[key]}/>);
+      list.push(<RoomPreview key={key} complete={this.props.completeRooms.some((id) => parseInt(id, 10) === parseInt(key, 10))} onClick={() => this.openPlayground(key)} data={this.props.rooms[key]}/>);
     }
     return list;
   }
@@ -45,6 +45,7 @@ class MuseumPanel extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    completeRooms: state.data.completeRooms,
     museum: state.data.activeMuseum,
     rooms: state.data.rooms
   }
