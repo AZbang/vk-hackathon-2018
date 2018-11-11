@@ -6,11 +6,12 @@ import './MuseumPreview.css';
 
 class MuseumPreview extends React.Component {
   render() {
+    let bg = 'linear-gradient(-45deg, #fff0, #5181b8), url(' + data.getMuseumImg(this.props.data.image) + ")";
+
     return (
-      <div onClick={this.props.onClick} className="museum-preview" style={{backgroundImage: 'url(' + data.getMuseumImg(this.props.data.image) + ')'}}>
-        <div className="museum-preview__gradient"></div>
+      <Div onClick={this.props.onClick} className="museum-preview" style={{backgroundImage: bg}}>
         <h1 className="museum-preview__label">{this.props.data.name}</h1>
-      </div>
+      </Div>
     )
   }
 }

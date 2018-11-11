@@ -36,7 +36,7 @@ class MuseumsPanel extends Component {
         {this.props.loading && (<div style={{height: 500}}><Spinner/></div>)}
         {!this.props.loading && ([
           <Group title="Выберите музей для прогулки:">
-            <List style={{padding: '1px'}}>
+            <List style={{paddingBottom: '5px'}}>
               {museumsList}
             </List>
           </Group>,

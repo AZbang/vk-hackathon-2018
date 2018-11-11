@@ -1,34 +1,20 @@
 .museum-preview {
   width: 93%;
   box-shadow: 0 1px 3px #ccc;
-  margin: 20px auto;
+  margin: 0 auto 20px;
   border-radius: 5px;
+  padding: 0;
   height: 70px;
+  line-height: 70px;
   background-size: cover;
   cursor: pointer;
-  position: relative;
-  cursor: pointer;
   background-position: center;
-}
-
-.museum-preview__gradient {
-  background: linear-gradient(-45deg, #fff0, #5181b8);
-  width: 83%;
-  height: 100%;
-  position: absolute;
-  cursor: pointer;
-  z-index: 100;
-  top: 0;
-  border-radius: 5px;
 }
 .museum-preview__label {
   color: #fff;
   font-family: HelveticaNeueCyr;
   font-size: 1.3em;
-  text-align: center;
   font-weight: 900;
+  margin: 5px 0 5px 15px;
   z-index: 10000;
-  position: absolute;
-  left: 10px;
-  top: -6px;
 }

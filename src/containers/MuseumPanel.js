@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
-import {Panel, HeaderButton, PanelHeader,Search, Group} from '@vkontakte/vkui';
+import {Panel, HeaderButton, PanelHeader,Search, Group, List, Footer} from '@vkontakte/vkui';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 
 import * as data from '../store/actions';
@@ -20,22 +20,24 @@ class MuseumPanel extends React.Component {
     this.props.dispatch(push('/museums'));
   }
 
-  getRoomPreviewsList = () =>
-    this.props.museum.rooms.map((id) =>
-      <RoomPreview
-        key={id}
-        onClick={() => this.openPlayground(id)}
-        room={this.props.rooms[id]}/>
-    )
-
+  getRoomPreviewsList = () => {
+    let list = [];
+    for(let key in this.props.rooms) {
+      list.push(<RoomPreview key={key} onClick={() => this.openPlayground(key)} data={this.props.rooms[key]}/>);
+    }
+    return list;
+  }
   render() {
     return (
       <Panel id={this.props.id}>
         <PanelHeader noShadow left={<HeaderButton onClick={this.openMuseums}>{<Icon24Back/>}</HeaderButton>}>{this.props.museum.name}</PanelHeader>
-        <Search/>
-        <Group>
-          {this.getRoomPreviewsList()}
+        <Search placeholder="Например, зал 343"/>
+        <Group title="Выберите зал для прогулки:">
+          <List style={{paddingBottom: '5px'}}>
+            {this.getRoomPreviewsList()}
+          </List>
         </Group>
+        <Footer>Доступно {this.props.rooms.length} зала</Footer>
       </Panel>
     )
   }
