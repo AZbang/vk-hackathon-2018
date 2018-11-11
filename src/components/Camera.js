@@ -78,8 +78,6 @@ class Camera extends React.Component {
         video.width = 224;
         video.height = 224;
         video.onloadedmetadata = () => {
-          let max = Math.max(video.videoWidth, video.videoHeight);
-
           video.style.width = video.videoWidth+video.videoHeight + 'px';
           video.style.marginLeft = -(video.videoWidth+video.videoHeight)/2+window.innerWidth/2 + 'px';
           video.style.height = '100vh';

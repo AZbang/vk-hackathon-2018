@@ -37,7 +37,7 @@ class MuseumPanel extends React.Component {
             {this.getRoomPreviewsList()}
           </List>
         </Group>
-        <Footer>Доступно {this.props.rooms.length} зала</Footer>
+        <Footer>Доступно 4 зала</Footer>
       </Panel>
     )
   }

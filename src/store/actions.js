@@ -41,7 +41,17 @@ export function getItems() {
   }
 }
 
-
+export function getAchieves() {
+  return dispatch => {
+    dispatch(setLoading(true));
+    fetch(DB_PATH + '/achivements.json')
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({type: 'SET_ACHIEMENTS', data});
+        dispatch(setLoading(false));
+      });
+  }
+}
 
 export function setLoading(loading) {
   return {type: 'SET_LOADING', loading}

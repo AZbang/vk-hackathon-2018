@@ -6,6 +6,7 @@ const initialState = Immutable({
   museums: [],
   floors: [],
   rooms: [],
+  achiements: [],
 
   activeMuseum: {
     rooms: []
@@ -37,6 +38,9 @@ export default function reduce(state = initialState, action = {}) {
 
     case 'SET_ITEMS':
       return state.merge({items: action.data})
+
+    case 'SET_ACHIEMENTS':
+      return state.merge({achiements: action.data});
 
     case 'SET_MUSEUM':
       return state.merge({

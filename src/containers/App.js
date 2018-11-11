@@ -25,6 +25,7 @@ class App extends Component {
       this.props.dispatch(data.getMuseums());
       this.props.dispatch(data.getRooms());
       this.props.dispatch(data.getItems());
+      this.props.dispatch(data.getAchieves());
     });
   }
 

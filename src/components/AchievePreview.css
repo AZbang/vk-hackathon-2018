@@ -1,0 +1,38 @@
+.achive-preview {
+  position: relative;
+  width: 95%;
+  padding-bottom: 10px;
+  margin: 5px auto;
+  border-bottom: 1px solid #ccc;
+}
+
+.achive-preview:last-child {
+  border-bottom: none;
+}
+
+.achive-preview__icon {
+  width: 80px;
+  font-size: 3em;
+  display: inline-block;
+  text-align: center;
+}
+.achive-preview__info {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 82px;
+  width: 70%;
+}
+
+.achive-preview__info__name {
+  font-family: HelveticaNeueCyr;
+  margin: 0;
+  font-size: 1em;
+}
+
+.achive-preview__info__description {
+  font-family: HelveticaNeueCyr;
+  margin: 0;
+  font-weight: 300;
+  font-size: .9em;
+}
