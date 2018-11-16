@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.13.3/dist/tf.min.js"></script>
+  <script>
+    let model, result = {};
+
+    tf.loadModel('https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json')
+      .then((mobilenet) => {
+        // Return a model that outputs an internal activation.
+        const layer = mobilenet.getLayer('global_average_pooling2d_1');
+        model = tf.model({inputs: mobilenet.inputs, outputs: layer.output});
+        model.predict(tf.zeros([1, 224, 224, 3])).dispose();
+
+        for(let i = 0; i < 244; i++) {
+          let imgElement = new Image;
+          imgElement.addEventListener("load", function() {
+            let _imgElement = imgElement;
+            let _i = i;
+            const img = tf.fromPixels(_imgElement).toFloat();
+            const offset = tf.scalar(127.5);
+            const normalized = img.sub(offset).div(offset);
+            const batched = normalized.reshape([1, 224, 224, 3]);
+
+            let vectors = model.predict(batched);
+            result[_imgElement.src] = vectors.dataSync();
+
+            if(_i === 243) document.write(JSON.stringify(result));
+          }, false);
+
+          imgElement.crossOrigin = "Anonymous";
+          imgElement.src = './dataset/' + i + '.jpg';
+        }
+      });
+  </script>
+</body>
+</html>
