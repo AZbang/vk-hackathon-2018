@@ -6,14 +6,6 @@
 # testing
 /coverage
 
-# production
-/www
-/build
-/platforms
-/plugins
-azbang.jks
-build.json
-
 # misc
 .DS_Store
 .env.local
