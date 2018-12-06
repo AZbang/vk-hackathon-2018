@@ -11,7 +11,7 @@ class StoryItem extends React.Component {
   }
 
   componentDidMount() {
-    getDominantColor(data.getItemImg(this.getCurrentItem().image), (rgb) => {
+    getDominantColor(data.getItemImg(this.props.item.image), (rgb) => {
       this.setState({dominantColor: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`});
     });
   }
