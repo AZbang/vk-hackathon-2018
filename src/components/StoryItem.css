@@ -1,10 +1,10 @@
 .story-item__bg {
-  position: absolute;
+  position: fixed;
   width: 100vw;
-  height: 100vh;
   z-index: 10000;
   top: 0;
   left: 0;
+  bottom: 0;
   transform: scale(.94);
   border-radius: 10px;
   background-position: center;

@@ -17,12 +17,13 @@ const history = createHashHistory({
 });
 
 var store;
-if(process.env.NODE_ENV !== 'production') {
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+if(process.env.NODE_ENV !== 'production' && composeEnhancers) {
   const logger = store => next => action => {
     console.log('dispatching', action);
     return next(action);
   }
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
   store = createStore(
     rootReducer, composeEnhancers(applyMiddleware(thunk, routerMiddleware(history), logger))
   );

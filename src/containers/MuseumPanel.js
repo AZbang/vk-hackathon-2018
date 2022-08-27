@@ -8,8 +8,6 @@ import Icon24Back from '@vkontakte/icons/dist/24/back';
 import * as data from '../store/actions';
 import RoomPreview from '../components/RoomPreview';
 
-
-
 class MuseumPanel extends React.Component {
   openPlayground = (id) => {
     this.props.dispatch(data.setRoom(id))

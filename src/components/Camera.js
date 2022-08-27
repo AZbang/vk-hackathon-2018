@@ -1,10 +1,10 @@
-import React from 'react';
-import * as tf from '@tensorflow/tfjs';
-import './Camera.css';
+import React from "react";
+import * as tf from "@tensorflow/tfjs";
+import "./Camera.css";
 
 class Camera extends React.Component {
   cameraStream = null;
-  snapShotCanvas = document.createElement('canvas');
+  snapShotCanvas = document.createElement("canvas");
   aspectRatio = null;
   tickerId = null;
 
@@ -13,8 +13,8 @@ class Camera extends React.Component {
    * Returns a batched image (1-element batch) of shape [1, w, h, c].
    */
   capture() {
-    const video = document.getElementById('stream-camera');
-    if(!video) return;
+    const video = document.getElementById("stream-camera");
+    if (!video) return;
 
     return tf.tidy(() => {
       // Reads the image as a Tensor from the webcam <video> element.
@@ -29,7 +29,7 @@ class Camera extends React.Component {
 
       // Normalize the image between -1 and 1. The image comes in between 0-255,
       // so we divide by 127 and subtract 1.
-      let res =  batchedImage.toFloat().div(tf.scalar(127)).sub(tf.scalar(1));
+      let res = batchedImage.toFloat().div(tf.scalar(127)).sub(tf.scalar(1));
       this.props.onStream && this.props.onStream(res);
     });
   }
@@ -41,9 +41,9 @@ class Camera extends React.Component {
   cropImage(img) {
     const size = Math.min(img.shape[0], img.shape[1]);
     const centerHeight = img.shape[0] / 2;
-    const beginHeight = centerHeight - (size / 2);
+    const beginHeight = centerHeight - size / 2;
     const centerWidth = img.shape[1] / 2;
-    const beginWidth = centerWidth - (size / 2);
+    const beginWidth = centerWidth - size / 2;
     return img.slice([beginHeight, beginWidth, 0], [size, size, 3]);
   }
 
@@ -54,7 +54,7 @@ class Camera extends React.Component {
    * @param {number} height The real height of the video element.
    */
   adjustVideoSize(width, height) {
-    const video = document.getElementById('stream-camera');
+    const video = document.getElementById("stream-camera");
 
     const aspectRatio = width / height;
     if (width >= height) {
@@ -63,41 +63,60 @@ class Camera extends React.Component {
       video.height = video.width / aspectRatio;
     }
   }
+
   componentDidMount() {
-    const video = document.getElementById('stream-camera');
+    const video = document.getElementById("stream-camera");
+    video.setAttribute("autoplay", "");
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
 
-    const navigatorAny = navigator;
-    navigator.getUserMedia = navigator.getUserMedia ||
-        navigatorAny.webkitGetUserMedia || navigatorAny.mozGetUserMedia ||
-        navigatorAny.msGetUserMedia;
+    const constraints = {
+      audio: false,
+      video: {
+        facingMode: "environment",
+      },
+    };
 
-    if(navigator.getUserMedia) {
-      navigator.getUserMedia({video: { facingMode:  "environment" }}, stream => {
-        video.srcObject = stream;
-        this.cameraStream = stream.getTracks()[0];
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then((localMediaStream) => {
+        console.log(localMediaStream);
+        video.srcObject = localMediaStream;
         video.width = 224;
         video.height = 224;
+        video.play();
+
+        this.cameraStream = localMediaStream.getTracks()[0];
+
         video.onloadedmetadata = () => {
-          video.style.width = video.videoWidth+video.videoHeight + 'px';
-          video.style.marginLeft = -(video.videoWidth+video.videoHeight)/2+window.innerWidth/2 + 'px';
-          video.style.height = '100vh';
+          console.log("onloadmetadata");
+          video.style.width = video.videoWidth + video.videoHeight + "px";
+          video.style.marginLeft =
+            -(video.videoWidth + video.videoHeight) / 2 +
+            window.innerWidth / 2 +
+            "px";
+          video.style.height = "100vh";
           this.tickerId = setInterval(() => this.capture(), 500);
-        }
-      }, error => {
-        throw error;
+        };
+      })
+      .catch((err) => {
+        console.error(`OH NO!!!!`, err);
       });
-    }
   }
+
   componentWillUnmount() {
     this.tickerId && clearInterval(this.tickerId);
     this.cameraStream && this.cameraStream.stop();
   }
 
   render = () => (
-    <div onClick={() => this.capture()} style={{position: 'absolute', top: 0}}>
-      <video autoPlay id="stream-camera"></video>
+    <div style={{ position: "absolute", top: 0 }}>
+      <video
+        id="stream-camera"
+        style={{ width: "100vw", height: "100vh" }}
+      ></video>
     </div>
-  )
+  );
 }
 
 export default Camera;
